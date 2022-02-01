@@ -1,9 +1,21 @@
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
+import org.junit.jupiter.api.BeforeAll;
 import pages.PageObjects;
 import org.junit.jupiter.api.Test;
+
+import java.time.Duration;
+
+import static com.codeborne.selenide.Selenide.$;
 
 public class WebFormTest {
     PageObjects webForm = new PageObjects();
 
+    @BeforeAll
+    static void setup(){
+        Configuration.startMaximized=true;
+    }
     @Test
     public void FormFillTest(){
         webForm.openURL();
@@ -22,4 +34,10 @@ public class WebFormTest {
         webForm.uploadPicture("src/test/resources/test.JPG");
         webForm.submitForm();
     }
+
+    /*@Test
+    public void WaitTest(){
+        webForm.openURL();
+        Selenide.$(".css-1uccc91-singleValue").shouldHave(Condition.text("Haryana"), Duration.ofSeconds(30));
+    }*/
 }
